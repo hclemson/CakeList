@@ -7,8 +7,14 @@
 //
 
 #import "CakeCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation CakeCell
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.cakeImageView.layer.cornerRadius = 2;
+    self.cakeImageView.layer.masksToBounds = true;
+}
 
 @end

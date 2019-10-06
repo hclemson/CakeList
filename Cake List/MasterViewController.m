@@ -9,16 +9,43 @@
 #import "MasterViewController.h"
 #import "CakeCell.h"
 
+
 @interface MasterViewController ()
-@property (strong, nonatomic) NSArray *objects;
+{
+    CakeManager *mgr;
+}
+
 @end
 
 @implementation MasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getData];
+    
+    mgr = [[CakeManager alloc] init];
+    
+    self.imageCache = [[NSMutableDictionary alloc] init];
+    
+    // Pull to refresh
+    [self.tableView.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    
+    // Get the cake data
+    [self refreshData];
 }
+
+- (void)refreshData {
+    // Async download to prevent blocking UI
+    [mgr downloadCakesWithCompletion:^(NSArray<Cake *> *data, NSError *error) {
+        self.cakes = data;
+        [self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:NO];
+    }];
+}
+
+- (void)reloadTable {
+    [self.tableView.refreshControl endRefreshing];
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - Table View
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -26,22 +53,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    return self.cakes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"CakeCell"];
     
-    NSDictionary *object = self.objects[indexPath.row];
-    cell.titleLabel.text = object[@"title"];
-    cell.descriptionLabel.text = object[@"desc"];
- 
+    Cake *cake = [self.cakes objectAtIndex:indexPath.row];
+    cell.titleLabel.text = cake.title;
+    cell.descriptionLabel.text = cake.desc;
+    cell.cakeImageView.image = nil; // Reset the image
     
-    NSURL *aURL = [NSURL URLWithString:object[@"image"]];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-    UIImage *image = [UIImage imageWithData:data];
-    [cell.cakeImageView setImage:image];
-    
+    [self imageAtURLString:cake.image completion:^(UIImage *image, BOOL cached) {
+        // If using a cached image, can set the image straight away, otherwise reload the cell
+        if (cached) {
+            cell.cakeImageView.image = image;
+        } else {
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }];
     return cell;
 }
 
@@ -49,23 +79,37 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)getData{
-    
-    NSURL *url = [NSURL URLWithString:@"https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"];
-    
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    NSError *jsonError;
-    id responseData = [NSJSONSerialization
-                       JSONObjectWithData:data
-                       options:kNilOptions
-                       error:&jsonError];
-    if (!jsonError){
-        self.objects = responseData;
-        [self.tableView reloadData];
-    } else {
-    }
-    
-}
+#pragma mark Helpers
 
+/**
+* Get an image from a url
+* Note to reviewer: This could be done in a UIImageView extension with separate image cache
+*
+* @param urlString The location of the image
+* @completion Called on image download, or cached image retrieved
+*/
+- (void)imageAtURLString:(NSString *)urlString completion:(void(^)(UIImage *, BOOL))completion {
+    // If image has already been downloaded
+    if (self.imageCache[urlString]) {
+        completion(self.imageCache[urlString], YES);
+    } else {
+        // Download image
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (data) {
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    // Save to cache
+                    self.imageCache[urlString] = image;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(image, NO);
+                    });
+                } else {
+                    NSLog(@"Image invalid %@", urlString);
+                }
+            }
+        }];
+        [task resume];
+    }
+}
 @end

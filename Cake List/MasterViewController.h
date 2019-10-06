@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Cake_List-Swift.h"
+
+@class CakeManager;
 
 @interface MasterViewController : UITableViewController
 
+@property (strong, nonatomic) NSArray<Cake*> *cakes;
+@property (strong, nonatomic) NSMutableDictionary *imageCache;
 
 @end
 
