@@ -120,18 +120,18 @@
 		DBF17A131B0B648F004E6311 /* Cake List */ = {
 			isa = PBXGroup;
 			children = (
-				6F2E51C7234A76EF0012CB3A /* Model */,
-				6F2E51BF234A6D1F0012CB3A /* Cake_List-Bridging-Header.h */,
-				6F2E51C0234A6D1F0012CB3A /* Cake_ListTests-Bridging-Header.h */,
-				6F2E51BE234A6D020012CB3A /* Helpers */,
 				DBF17A181B0B648F004E6311 /* AppDelegate.h */,
 				DBF17A191B0B648F004E6311 /* AppDelegate.m */,
-				DBF17A401B0B8EE3004E6311 /* View Controllers */,
+				6F2E51BF234A6D1F0012CB3A /* Cake_List-Bridging-Header.h */,
+				6F2E51C0234A6D1F0012CB3A /* Cake_ListTests-Bridging-Header.h */,
 				DBF17A411B0B8EED004E6311 /* Cells */,
-				DBF17A211B0B648F004E6311 /* Main.storyboard */,
+				6F2E51BE234A6D020012CB3A /* Helpers */,
 				DBF17A241B0B648F004E6311 /* Images.xcassets */,
 				DBF17A261B0B648F004E6311 /* LaunchScreen.xib */,
+				DBF17A211B0B648F004E6311 /* Main.storyboard */,
+				6F2E51C7234A76EF0012CB3A /* Model */,
 				DBF17A141B0B648F004E6311 /* Supporting Files */,
+				DBF17A401B0B8EE3004E6311 /* View Controllers */,
 			);
 			path = "Cake List";
 			sourceTree = "<group>";
