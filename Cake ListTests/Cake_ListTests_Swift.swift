@@ -29,5 +29,28 @@ class Cake_ListTests_Swift: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testCreateCake() {
+        let jsonCake = ["title":"Jam sponge",
+                        "desc":"Simple cake with raspberry jam", "image":"https://images.immediate.co.uk/production/volatile/sites/2/2017/10/Sparrow-069-3a111e3.jpg?quality=45&crop=18px,3277px,4445px,1889px&resize=1880,808"]
+        let cake = Cake(json: jsonCake)
+        
+        // Example of not nil test
+        XCTAssertNotNil(cake)
+        
+        // Example of equals test
+        XCTAssertEqual(cake?.title, "Jam sponge")
+        XCTAssertEqual(cake?.desc, "Simple cake with raspberry jam")
+    }
+    
+    func testCreateCakeNoImage() {
+        let jsonCake = ["title":"Jam sponge",
+                        "desc":"Simple cake with raspberry jam"]
+        let cake = Cake(json: jsonCake)
+        
+        // Cake should not be created as missing image
+        XCTAssertNil(cake)
+    }
+
 
 }

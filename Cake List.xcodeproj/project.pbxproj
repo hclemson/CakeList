@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F1C3BE1234CB4A500C1AF14 /* Cake_ListTests_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1C3BE0234CB4A500C1AF14 /* Cake_ListTests_Swift.swift */; };
 		6F2E51C2234A6D1F0012CB3A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E51C1234A6D1F0012CB3A /* Constants.swift */; };
 		6F2E51C3234A6D1F0012CB3A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E51C1234A6D1F0012CB3A /* Constants.swift */; };
 		6F2E51C5234A6D9E0012CB3A /* CakeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E51C4234A6D9E0012CB3A /* CakeManager.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F1C3BE0234CB4A500C1AF14 /* Cake_ListTests_Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake_ListTests_Swift.swift; sourceTree = "<group>"; };
 		6F2E51BF234A6D1F0012CB3A /* Cake_List-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cake_List-Bridging-Header.h"; sourceTree = "<group>"; };
 		6F2E51C0234A6D1F0012CB3A /* Cake_ListTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cake_ListTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		6F2E51C1234A6D1F0012CB3A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		DBF17A301B0B648F004E6311 /* Cake ListTests */ = {
 			isa = PBXGroup;
 			children = (
+				6F1C3BE0234CB4A500C1AF14 /* Cake_ListTests_Swift.swift */,
 				DBF17A331B0B648F004E6311 /* Cake_ListTests.m */,
 				DBF17A311B0B648F004E6311 /* Supporting Files */,
 			);
@@ -301,6 +304,7 @@
 				6F2E51CA234A77010012CB3A /* Cake.swift in Sources */,
 				6F2E51C3234A6D1F0012CB3A /* Constants.swift in Sources */,
 				6F2E51C6234A6D9E0012CB3A /* CakeManager.swift in Sources */,
+				6F1C3BE1234CB4A500C1AF14 /* Cake_ListTests_Swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,8 +424,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "Cake List/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.waracle.Cake-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake_List-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -435,8 +441,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "Cake List/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.waracle.Cake-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake_List-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -459,8 +467,9 @@
 				);
 				INFOPLIST_FILE = "Cake ListTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.waracle.Cake-ListTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake ListTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake_ListTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cake List.app/Cake List";
@@ -479,8 +488,9 @@
 				);
 				INFOPLIST_FILE = "Cake ListTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.waracle.Cake-ListTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake ListTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake_ListTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cake List.app/Cake List";
 			};
