@@ -67,17 +67,10 @@ import Foundation
     */
     private func parseJsonCakes(data: [[String: Any]]) -> Array<Cake> {
         var cakes = Array<Cake>()
-        for cake in data {
-            let title = cake["title"] as? String ?? "Unknown"
-            let desc = cake["desc"] as? String ?? "Unknown"
-            let image = cake["image"] as? String ?? "Unknown"
-            
-            let cake: Cake = Cake()
-            cake.title = title
-            cake.desc = desc
-            cake.image = image
-            
-            cakes.append(cake)
+        for cakeData in data {
+            if let cake = Cake(json: cakeData) {
+                cakes.append(cake)
+            }
         }
         return cakes
     }

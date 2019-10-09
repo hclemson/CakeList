@@ -60,8 +60,8 @@
     CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"CakeCell"];
     
     Cake *cake = [self.cakes objectAtIndex:indexPath.row];
-    cell.titleLabel.text = cake.title;
-    cell.descriptionLabel.text = cake.desc;
+    cell.titleLabel.text = [cake.title capitalizedString];
+    cell.descriptionLabel.text = [cake.desc capitalizedString];
     cell.cakeImageView.image = nil; // Reset the image
     
     [self imageAtURLString:cake.image completion:^(UIImage *image, BOOL cached) {

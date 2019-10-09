@@ -8,10 +8,25 @@
 
 import UIKit
 
+// Using class instead of structs (and Codeable) so that 'Cake' can be exposed in obj-c
 @objc class Cake: NSObject {
     var _title: String!
     var _desc: String!
     var _image: String!
+    
+    init?(json: [String: Any]) {
+         guard let title = json["title"] as? String,
+             let desc = json["desc"] as? String,
+             let image = json["image"] as? String
+         else {
+             return nil
+         }
+
+         super.init()
+         self.title = title
+         self.desc = desc
+         self.image = image
+     }
     
     @objc var title:String {
         get {
