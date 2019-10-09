@@ -17,3 +17,5 @@ Added constraints to cell, so all data is readable.
 
 Added a constants file for URL definitions.
 
+Added basic unit tests
+
