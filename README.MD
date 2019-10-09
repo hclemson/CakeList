@@ -7,7 +7,7 @@ Demonstrated knowledge of swift by adding a 'CakeManager' to download and parse 
 
 Added a 'Cake' class to store the cake data.
 
-Improved the loading of the table, by making the cake download asyncronous.
+Improved the loading of the table, by making the cake download asynchronous.
 
 Added a basic image cache. This could be put in a UIImageView extension and dedicate image cache in a larger project, but felt it wasn't required for this demo.
 
